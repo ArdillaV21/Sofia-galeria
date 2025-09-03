@@ -35,6 +35,9 @@ export default function Home() {
     name: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const sliderImages = [
     {
@@ -216,31 +219,39 @@ export default function Home() {
     if (!formData.message.trim()) return;
 
     setIsSubmitting(true);
+    setSubmitStatus("idle");
 
-    // Create mailto link with form data
-    const subject = encodeURIComponent(
-      `Mensaje de ${formData.name || "Visitante del portfolio"}`
-    );
-    const body = encodeURIComponent(`
-Nombre: ${formData.name || "No especificado"}
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          message: formData.message,
+        }),
+      });
 
-Mensaje:
-${formData.message}
+      const data = await response.json();
 
----
-Enviado desde el portfolio de Sofia Albornoz
-    `);
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ message: "", name: "" });
 
-    const mailtoLink = `mailto:sofivalbornoz@gmail.com?subject=${subject}&body=${body}`;
-
-    // Open email client
-    window.location.href = mailtoLink;
-
-    // Reset form after a short delay
-    setTimeout(() => {
-      setFormData({ message: "", name: "" });
+        setTimeout(() => {
+          setSubmitStatus("idle");
+        }, 5000);
+      } else {
+        setSubmitStatus("error");
+        console.error("Error:", data.error);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Error sending email:", error);
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -262,7 +273,7 @@ Enviado desde el portfolio de Sofia Albornoz
       </div>
 
       <div className="py-10 md:py-20 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-16 mt-5 md:mt-10">
             <div className="flex-shrink-0 order-2 md:order-1">
               <Image
@@ -299,7 +310,7 @@ Enviado desde el portfolio de Sofia Albornoz
       </div>
 
       <div className="py-10 md:py-20 px-4 md:px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <Image
@@ -321,7 +332,7 @@ Enviado desde el portfolio de Sofia Albornoz
       </div>
 
       <div className="py-10 md:py-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl xl:max-w-7xl mx-auto">
           <div className="relative">
             <div className="hidden md:flex justify-between items-center mb-6">
               <button
@@ -398,9 +409,9 @@ Enviado desde el portfolio de Sofia Albornoz
               </div>
             </div>
 
-            <div className="hidden md:block overflow-visible px-8">
+            <div className="hidden md:block overflow-hidden px-4">
               <div
-                className="flex transition-transform duration-500 ease-out gap-6"
+                className="flex transition-transform duration-500 ease-out gap-4"
                 style={{
                   transform: `translateX(-${currentSlide * 25}%)`,
                 }}>
@@ -409,67 +420,64 @@ Enviado desde el portfolio de Sofia Albornoz
                     key={index}
                     className={`flex-shrink-0 relative cursor-pointer transition-all duration-500 ease-out overflow-hidden rounded-xl group ${
                       hoveredCard === index
-                        ? "w-[380px] h-[480px] shadow-2xl"
+                        ? "w-[420px] h-[520px] shadow-2xl"
                         : hoveredCard !== null
-                        ? "w-1/4 h-96 opacity-70"
-                        : "w-1/4 h-96"
+                        ? "w-[280px] h-[380px] opacity-70"
+                        : "w-[280px] h-[380px]"
                     }`}
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
                     onClick={() => openModal(index)}>
-                    <Image
-                      src={image.src || "/placeholder.svg"}
-                      alt={image.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 ease-out"
-                    />
-
-                    <div
-                      className={`absolute inset-0 transition-all duration-500 ${
-                        hoveredCard === index
-                          ? "bg-gradient-to-t from-black/80 via-black/30 to-transparent"
-                          : "bg-gradient-to-t from-black/70 via-black/20 to-transparent"
-                      }`}
-                    />
-
-                    <div
-                      className={`absolute top-6 right-6 bg-white/20 rounded-full p-3 transition-all duration-300 ${
-                        hoveredCard === index
-                          ? "opacity-100 bg-white/30"
-                          : "opacity-0 group-hover:opacity-100"
-                      }`}>
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-
-                    <div
-                      className={`absolute bottom-0 left-0 right-0 transition-all duration-500 text-white ${
-                        hoveredCard === index ? "p-8" : "p-6"
-                      }`}>
-                      <h3
-                        className={`font-heading font-normal transition-all duration-500 leading-tight ${
-                          hoveredCard === index
-                            ? "text-3xl mb-4"
-                            : "text-lg mb-2"
-                        }`}>
-                        {image.title}
-                      </h3>
-
-                      <p
-                        className={`leading-relaxed transition-all duration-500 font-body ${
-                          hoveredCard === index
-                            ? "opacity-100 text-lg"
-                            : "opacity-90 text-sm"
-                        }`}>
-                        {image.description}
-                      </p>
-
+                    <div className="w-full h-full relative overflow-hidden rounded-lg">
+                      <Image
+                        src={image.src || "/placeholder.svg"}
+                        alt={image.alt}
+                        fill
+                        className="object-cover transition-transform duration-500 ease-out"
+                      />
                       <div
-                        className={`transition-all duration-500 bg-white/60 mt-4 ${
+                        className={`absolute inset-0 transition-all duration-500 ${
                           hoveredCard === index
-                            ? "w-12 h-0.5 opacity-100"
-                            : "w-0 h-0.5 opacity-0"
+                            ? "bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+                            : "bg-gradient-to-t from-black/70 via-black/20 to-transparent"
                         }`}
                       />
+                      <div
+                        className={`absolute top-6 right-6 bg-white/20 rounded-full p-3 transition-all duration-300 ${
+                          hoveredCard === index
+                            ? "opacity-100 bg-white/30"
+                            : "opacity-0 group-hover:opacity-100"
+                        }`}>
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                      <div
+                        className={`absolute bottom-0 left-0 right-0 transition-all duration-500 text-white ${
+                          hoveredCard === index ? "p-8" : "p-6"
+                        }`}>
+                        <h3
+                          className={`font-heading font-normal transition-all duration-500 leading-tight ${
+                            hoveredCard === index
+                              ? "text-3xl mb-4"
+                              : "text-lg mb-2"
+                          }`}>
+                          {image.title}
+                        </h3>
+                        <p
+                          className={`leading-relaxed transition-all duration-500 font-body ${
+                            hoveredCard === index
+                              ? "opacity-100 text-lg"
+                              : "opacity-90 text-sm"
+                          }`}>
+                          {image.description}
+                        </p>
+                        <div
+                          className={`transition-all duration-500 bg-white/60 mt-4 ${
+                            hoveredCard === index
+                              ? "w-12 h-0.5 opacity-100"
+                              : "w-0 h-0.5 opacity-0"
+                          }`}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -499,7 +507,7 @@ Enviado desde el portfolio de Sofia Albornoz
       </div>
 
       <div className="py-10 md:py-20 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="order-2 md:order-1">
               <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 mb-6 md:mb-8 text-center md:text-left">
@@ -528,7 +536,7 @@ Enviado desde el portfolio de Sofia Albornoz
         style={{
           backgroundColor: "#abb27f",
         }}>
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 mb-8 md:mb-12">
             Contactos
           </h2>
@@ -588,6 +596,18 @@ Enviado desde el portfolio de Sofia Albornoz
                     required
                   />
                 </div>
+
+                {submitStatus === "success" && (
+                  <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl">
+                    ✓ Mensaje enviado correctamente. ¡Gracias por contactarme!
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
+                    ✗ Error al enviar el mensaje. Por favor intenta nuevamente.
+                  </div>
+                )}
 
                 <button
                   type="submit"
