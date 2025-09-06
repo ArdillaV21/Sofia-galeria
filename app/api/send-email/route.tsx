@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev", // Dominio verificado en Resend
-        to: ["fedevalle21@gmail.com"],
+        to: ["sofiavalbornoz@gmail.com"],
         subject: `Mensaje de ${name || "Visitante del portfolio"}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

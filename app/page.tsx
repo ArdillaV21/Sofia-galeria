@@ -41,41 +41,77 @@ export default function Home() {
 
   const sliderImages = [
     {
-      src: "/images/woman-megaphone.jpg",
-      alt: "Woman with megaphone",
-      title: "Evocación Urbana",
+      src: "/carrousel/DSC_0393.jpg",
+      alt: "Marco de puerta en contraluz",
+      title: "La bolsa de los recuerdos",
+    },
+    {
+      src: "/carrousel/7.jpg",
+      alt: "Hombre sentado atras de un zaguán",
+      title: "¿Que me sostiene en escena?",
+    },
+    {
+      src: "/carrousel/DSC_0407.jpg",
+      alt: "Pila de sillas de madera",
+      title: "Espacio de prueba",
+    },
+    {
+      src: "/carrousel/DSC_0412.jpg",
+      alt: "Torso de un hombre semidesnudo",
+      title: "Lo La Censura",
+    },
+    {
+      src: "/carrousel/DSC_0442.jpg",
+      alt: "Mujer sentada con un hombre tocando un instrumento",
+      title: "Cobijo y cosmicidad",
+    },
+    {
+      src: "/carrousel/DSC_0452.jpg",
+      alt: "Recorte de piernas de personas y un megafono",
+      title: "Hacer mundo en el mundo",
+    },
+    {
+      src: "/carrousel/DSC_0459.jpg",
+      alt: "Fila de trabajadores descansando",
+      title: "Cuerpos afectados",
+    },
+    {
+      src: "/carrousel/DSC_0506.jpg",
+      alt: "Manos sosteniendo una prenda de ropa puesta",
+      title: "Los gestos del mundo",
+    },
+    {
+      src: "/carrousel/DSC_0530.jpg",
+      alt: "Retrato de una mujer con cabello rizado",
+      title: "(Re)Evocación",
       description:
-        "Registro fotográfico que forma parte de un proyecto artístico teatral",
+        "Andrea Barbá directora del Laboratorio Transdisciplinario de Creación Escénica.",
     },
     {
-      src: "/images/evocacion-woman.jpg",
-      alt: "Woman smiling",
-      title: "Retrato Lola",
-      description: "Captura la esencia y personalidad en un momento íntimo",
+      src: "/carrousel/DSC_0566.jpg",
+      alt: "Mujer mirando hacia arriba",
+      title: "LO bocetado",
     },
     {
-      src: "/images/hands-fabric.jpg",
-      alt: "Hands with fabric",
-      title: "Texturas",
-      description: "Exploración de materiales y formas a través de las manos",
+      src: "/carrousel/DSC_0650.jpg",
+      alt: "Grupo de trabajadores a los pies de una estatua",
+      title:
+        "Han hurgado en sus propias memorias y legados para forjar una voz colectiva",
     },
     {
-      src: "/images/corset-back.png",
-      alt: "White corset top",
-      title: "Lola 24",
-      description: "Diseño contemporáneo que reinterpreta la feminidad",
+      src: "/carrousel/DSC_0673.jpg",
+      alt: "Trabajadores sosteniendo una tela blanca",
+      title: "Combatir el uno de mi identidad, hacernos multiples",
     },
     {
-      src: "/images/woman-megaphone.jpg",
-      alt: "Additional image 1",
-      title: "Expresión",
-      description: "Nuevas perspectivas del proyecto artístico",
+      src: "/carrousel/DSC_0686.jpg",
+      alt: "Mujer sosteniendo una tela blanca como si fuera un bebe",
+      title: "Lo que significa ser mujer y ser artista",
     },
     {
-      src: "/images/evocacion-woman.jpg",
-      alt: "Additional image 2",
-      title: "Intimidad",
-      description: "Momentos capturados en su esencia más pura",
+      src: "/carrousel/2.jpg",
+      alt: "mujer con megáfono",
+      title: "Pulsión de vida",
     },
   ];
 
@@ -255,54 +291,56 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="relative h-screen">
-        <Image
-          src="/images/header-hero.jpg"
-          alt="People sitting with megaphone"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 flex items-center justify-center px-4">
-          <h1 className="text-white text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display font-light tracking-widest text-center">
-            SOFIA ALBORNOZ
-          </h1>
+    <>
+      <div className="min-h-screen bg-white">
+        <div className="relative h-screen">
+          <Image
+            src="/images/header-hero.jpg"
+            alt="People sitting with megaphone"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 flex items-center justify-center px-4">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display font-light tracking-widest text-center">
+              SOFIA ALBORNOZ
+            </h1>
+          </div>
         </div>
-      </div>
 
-      <div className="py-10 md:py-20 px-4 md:px-8">
-        <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-16 mt-5 md:mt-10">
-            <div className="flex-shrink-0 order-2 md:order-1">
-              <Image
-                src="/images/hands-fabric.jpg"
-                alt="Hands holding white fabric"
-                width={280}
-                height={380}
-                className="object-cover w-64 h-80 md:w-70 md:h-96"
-              />
-            </div>
-
-            <div className="flex flex-col items-center md:items-start md:ml-8 order-1 md:order-2">
-              <div className="mb-4 md:mb-6 text-center md:text-left">
-                <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 leading-tight">
-                  Evocación
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-heading font-normal text-gray-800">
-                  Lola
-                </h3>
+        <div className="py-10 md:py-20 px-4 md:px-8">
+          <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-16 mt-5 md:mt-10">
+              <div className="flex-shrink-0 order-2 md:order-1">
+                <Image
+                  src="/images/hands-fabric.jpg"
+                  alt="Hands holding white fabric"
+                  width={280}
+                  height={380}
+                  className="object-cover w-64 h-80 md:w-70 md:h-96"
+                />
               </div>
 
-              <div className="mt-4 md:mt-8">
-                <Image
-                  src="/images/evocacion-woman.jpg"
-                  alt="Smiling woman with curly hair"
-                  width={320}
-                  height={280}
-                  className="object-cover w-72 h-64 md:w-80 md:h-70"
-                />
+              <div className="flex flex-col items-center md:items-start md:ml-8 order-1 md:order-2">
+                <div className=" text-center md:text-left mb-0 md:mb-10">
+                  <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 leading-tight">
+                    Evocación Lola
+                  </h2>
+                </div>
+
+                <div className="flex flex-col-reverse md:flex-col items-center md:items-start">
+                  <p className="text-gray-700 text-base md:text-lg leading-relaxed font-body max-w-2xl text-center md:text-left mt-8 md:mt-0">
+                    Es una propuesta dirigida por Andrea Barbá y concebida en el
+                    Laboratorio Transdisciplinario de Creación Escénica. La
+                    obra, que tiene su inicio en 2022 en el Museo Nicolás
+                    Avellaneda, desdibuja los límites entre el arte y la vida,
+                    el pasado y el presente. Nos invita a reflexionar sobre la
+                    historia de las mujeres en el arte y la sociedad, y es un
+                    llamado a despertar la sensibilidad, reviviendo el espíritu
+                    de la escultora Tucumana Lola Mora.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -312,20 +350,26 @@ export default function Home() {
       <div className="py-10 md:py-20 px-4 md:px-8 bg-gray-50">
         <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-4">
+              <p className="text-gray-700 text-base md:text-lg leading-relaxed font-body">
+                Se trata de una poética coreográfica que, como un eco en el
+                tiempo, dialoga con los rincones de la plaza y los pasillos del
+                museo.Los cuerpos que danzan en la obra resignifican el espacio
+                público y ponen en valor el patrimonio cultural de Tucumán a
+                través de las creaciones más emblemáticas de la artista: la
+                Estatua de la Libertad y la Fuente de las Nereidas. A lo largo
+                de los años, esta propuesta ha sido sostenida por distintos
+                intérpretes que han entregado su cuerpo y su historia.
+              </p>
+            </div>
             <div>
               <Image
-                src="/images/woman-megaphone.jpg"
+                src="/carrousel/2.jpg"
                 alt="Woman with megaphone in front of pink building"
                 width={400}
                 height={500}
                 className="w-full h-auto object-cover rounded-lg"
               />
-            </div>
-            <div className="space-y-4">
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed font-body">
-                Es un registro fotográfico que forma parte de un proyecto
-                artístico teatral que busca reivindicar a Lola mora etc.
-              </p>
             </div>
           </div>
         </div>
@@ -392,9 +436,7 @@ export default function Home() {
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                      </div>
+
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h3 className="text-xl font-heading font-normal mb-3">
                           {image.title}
@@ -506,11 +548,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="py-10 md:py-20 px-4 md:px-8">
+      <div className="mt-4 md:px-0">
         <div className="max-w-7xl xl:max-w-[90rem] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 mb-6 md:mb-8 text-center md:text-left">
+            <div className="order-1 md:order-1">
+              <h2 className="text-3xl md:text-4xl font-heading font-normal text-gray-800 mb-2 md:mb-8 text-center md:text-left">
                 Soy Sofi
               </h2>
               <p className="text-gray-700 text-base md:text-lg leading-relaxed text-center md:text-left font-body">
@@ -518,20 +560,20 @@ export default function Home() {
                 facultad Artes.
               </p>
             </div>
-            <div className="order-1 md:order-2">
+            <div className="order-2 md:order-2 flex justify-end">
               <Image
-                src="/images/Sofia.jpg"
+                src="/carrousel/Sofia.png"
                 alt="Sofia"
                 width={350}
-                height={400}
-                className="w-full h-auto object-cover rounded-lg max-w-sm mx-auto md:max-w-none"
+                height={250}
+                className="w-full object-cover rounded-lg max-w-xs md:max-w-sm lg:max-w-md md:ml-auto md:mr-0"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div
+      <footer
         className="py-12 md:py-20 px-4 md:px-8"
         style={{
           backgroundColor: "#abb27f",
@@ -564,6 +606,10 @@ export default function Home() {
                 <span className="text-xl md:text-2xl text-gray-700 font-ui font-normal">
                   381502168
                 </span>
+              </div>
+              <div className="flex flex-col mt-2 ml-0 md:ml-4 text-gray-700 font-heading font-bold text-sm md:text-base">
+                <span>Curaduría: Dalma Abregú</span>
+                <span>Directora del proyecto Evocacion Lola: Andrea Barbá</span>
               </div>
             </div>
 
@@ -620,17 +666,35 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+        {/* Sección de desarrollador */}
+        <div className="mt-15 text-center">
+          <p className="text-sm text-black mb-3">
+            Sitio web desarrollado con mucho amor por
+          </p>
+          <a
+            href="https://ginkgodevs.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block hover:opacity-80 transition-opacity">
+            <Image
+              src="/carrousel/ginkgo-logo.svg"
+              alt="Ginkgo Dev"
+              width={250}
+              height={35}
+              className="h-auto mx-auto"
+            />
+          </a>
+        </div>
+      </footer>
 
       {selectedImage !== null && (
         <div className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
+          <button
+            onClick={closeModal}
+            className="absolute top-4 left-2 z-10 bg-gray-100 hover:bg-gray-200 rounded-lg px-4 py-2 text-gray-800 transition-colors duration-200 font-medium font-ui">
+            Volver
+          </button>
           <div className="relative max-w-4xl max-h-[90vh] w-full">
-            <button
-              onClick={closeModal}
-              className="absolute top-4 left-4 z-10 bg-gray-100 hover:bg-gray-200 rounded-lg px-4 py-2 text-gray-800 transition-colors duration-200 font-medium font-ui">
-              Volver
-            </button>
-
             <div className="relative w-full h-[60vh] md:h-[70vh] mb-6">
               <Image
                 src={sliderImages[selectedImage].src || "/placeholder.svg"}
@@ -651,6 +715,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
